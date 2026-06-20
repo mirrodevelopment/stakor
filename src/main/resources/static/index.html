@@ -2839,9 +2839,6 @@
       text-shadow:
         0 1px 0 rgba(255, 255, 255, 0.90),
         0 0 12px rgba(255, 255, 255, 0.40);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .s2card-divider {
@@ -2862,14 +2859,11 @@
       text-shadow:
         0 1px 0 rgba(255, 255, 255, 0.80),
         0 0 8px rgba(255, 255, 255, 0.25);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     /* ===== SECTION 2 EXPLORE TOGGLE SWITCHES ===== */
     .s2-explore-toggle {
-      --toggle-size: 16px;
+      --toggle-size: 12px;
       --container-width: 10.8em;
       --container-height: 2.8em;
       --container-radius: 999px;
@@ -3329,6 +3323,22 @@
 
       .s2card-body {
         height: 40%;
+      }
+
+      .s2card-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .s2card-desc {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .s2-explore-toggle {
+        --toggle-size: 16px;
       }
     }
 
