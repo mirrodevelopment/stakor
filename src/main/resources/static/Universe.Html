@@ -462,7 +462,7 @@
         display: none;
       }
       .nav-cta {
-        display: flex !important;
+        display: flex;
         font-size: 0 !important; /* Hide text node "Sign In" */
         background: transparent !important;
         border: none !important;
@@ -1359,6 +1359,56 @@
             box-sizing: border-box !important;
         }
     }
+    /* Profile-only nav button (logged-in state) */
+    .nav-profile-btn {
+      background: rgba(255, 255, 255, .55) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.7) !important;
+      padding: 6px !important;
+      border-radius: 100px !important;
+      cursor: pointer !important;
+      transition: all .3s !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0 !important;
+      min-width: unset !important;
+    }
+    .nav-profile-btn:hover {
+      background: rgba(255, 255, 255, .8) !important;
+      box-shadow: 0 4px 20px rgba(37, 99, 255, .15) !important;
+      border-color: rgba(37, 99, 255, 0.3) !important;
+    }
+    .nav-profile-btn .nav-cta-icon {
+      width: 32px !important;
+      height: 32px !important;
+      margin: 0 !important;
+      background: rgba(37, 99, 255, 0.1) !important;
+      border-radius: 50% !important;
+      font-size: 15px !important;
+      transition: all 0.3s ease !important;
+    }
+    .nav-profile-btn:hover .nav-cta-icon {
+      background: #2563ff !important;
+      color: #fff !important;
+    }
+    /* Mobile override for profile btn */
+    @media (max-width: 768px) {
+      .nav-profile-btn {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        margin-right: 12px !important;
+      }
+      .nav-profile-btn .nav-cta-icon {
+        width: 38px !important;
+        height: 38px !important;
+        background: rgba(37, 99, 255, 0.08) !important;
+        border: 1px solid rgba(37, 99, 255, 0.12) !important;
+        font-size: 16px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1373,9 +1423,24 @@
         <li><a href="/subscribe">Subscription</a></li>
         <li><a href="/assessment">Assessment</a></li>
       </ul>
-      <button class="nav-cta" type="button" onclick="window.location.href='/login'">
+      <!-- Logged-out state: Sign In button -->
+      <button class="nav-cta" id="nav-signin-btn" type="button" onclick="window.location.href='/login'" style="display:flex">
         Sign In
-        <span class="nav-cta-icon">👤</span>
+        <span class="nav-cta-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M4 21c0-4.418 3.582-8 8-8s8 3.582 8 8"/>
+          </svg>
+        </span>
+      </button>
+      <!-- Logged-in state: profile icon only -->
+      <button class="nav-cta nav-profile-btn" id="nav-profile-btn" type="button" onclick="window.location.href='/profile'" style="display:none" title="Go to Profile">
+        <span class="nav-cta-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M4 21c0-4.418 3.582-8 8-8s8 3.582 8 8"/>
+          </svg>
+        </span>
       </button>
       <button class="nav-menu-btn" type="button" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -2373,6 +2438,31 @@
         } else {
           initNavbar();
         }
+    </script>
+
+    <!-- Auth-state navbar toggle -->
+    <script>
+      (function () {
+        function updateNavAuthState() {
+          var isLoggedIn = localStorage.getItem('stakor_logged_in') === 'true';
+          var signinBtn = document.getElementById('nav-signin-btn');
+          var profileBtn = document.getElementById('nav-profile-btn');
+          if (!signinBtn || !profileBtn) return;
+          if (isLoggedIn) {
+            signinBtn.style.display = 'none';
+            profileBtn.style.display = 'flex';
+          } else {
+            signinBtn.style.display = 'flex';
+            profileBtn.style.display = 'none';
+          }
+        }
+        // Run immediately if DOM ready, else wait
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', updateNavAuthState);
+        } else {
+          updateNavAuthState();
+        }
+      })();
     </script>
 </body>
 </html>
