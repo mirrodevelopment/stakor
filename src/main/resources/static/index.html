@@ -2863,7 +2863,7 @@
 
     /* ===== SECTION 2 EXPLORE TOGGLE SWITCHES ===== */
     .s2-explore-toggle {
-      --toggle-size: 12px;
+      --toggle-size: 16px;
       --container-width: 10.8em;
       --container-height: 2.8em;
       --container-radius: 999px;
@@ -3007,11 +3007,13 @@
 
     .s2-explore-toggle-text {
       position: absolute;
-      inset: 0;
+      top: 0;
+      bottom: 0;
+      left: 2.35em;
+      right: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-left: 3.0em;
 
       font-family: 'Goldman', sans-serif !important;
       font-size: 0.68em;
@@ -3147,8 +3149,8 @@
     }
 
     .s2-explore-toggle-checkbox:checked + .s2-explore-toggle-bg .s2-explore-toggle-text {
-      padding-left: 0;
-      padding-right: 3.0em;
+      left: 0;
+      right: 2.35em;
     }
 
     /* Hover and Interaction states */
