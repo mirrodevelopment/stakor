@@ -3140,7 +3140,7 @@
     }
 
     /* Checked State behavior overrides */
-    .s2-explore-toggle-checkbox:checked + .s2-explore-toggle-bg .s2-explore-toggle-handle {
+    .s2-explore-toggle-checkbox:checked ~ .s2-explore-toggle-handle {
       left: calc(100% - var(--knob-size) - .22em);
       transform: translateY(-50%) rotate(720deg) scale(1.05);
       animation: knobBreathS2Checked 3s ease-in-out infinite;
@@ -3170,12 +3170,12 @@
       transform: translateY(-50%) scale(0.85);
     }
 
-    .s2-explore-toggle-checkbox:checked + .s2-explore-toggle-bg:hover .s2-explore-toggle-handle {
+    .s2-explore-toggle:hover .s2-explore-toggle-checkbox:checked ~ .s2-explore-toggle-handle {
       animation: none;
       transform: translateY(-50%) rotate(720deg) scale(1.08);
     }
 
-    .s2-explore-toggle-checkbox:checked + .s2-explore-toggle-bg:active .s2-explore-toggle-handle {
+    .s2-explore-toggle:active .s2-explore-toggle-checkbox:checked ~ .s2-explore-toggle-handle {
       animation: none;
       transform: translateY(-50%) rotate(720deg) scale(0.85);
     }
@@ -9636,8 +9636,8 @@
               <input type="checkbox" class="s2-explore-toggle-checkbox">
               <div class="s2-explore-toggle-bg">
                 <span class="s2-explore-toggle-text">EXPLORE</span>
-                <div class="s2-explore-toggle-handle"></div>
               </div>
+              <div class="s2-explore-toggle-handle"></div>
             </label>
           </div>
         </div>
@@ -9655,8 +9655,8 @@
               <input type="checkbox" class="s2-explore-toggle-checkbox">
               <div class="s2-explore-toggle-bg">
                 <span class="s2-explore-toggle-text">EXPLORE</span>
-                <div class="s2-explore-toggle-handle"></div>
               </div>
+              <div class="s2-explore-toggle-handle"></div>
             </label>
           </div>
         </div>
@@ -9674,8 +9674,8 @@
               <input type="checkbox" class="s2-explore-toggle-checkbox">
               <div class="s2-explore-toggle-bg">
                 <span class="s2-explore-toggle-text">EXPLORE</span>
-                <div class="s2-explore-toggle-handle"></div>
               </div>
+              <div class="s2-explore-toggle-handle"></div>
             </label>
           </div>
         </div>
@@ -9693,8 +9693,8 @@
               <input type="checkbox" class="s2-explore-toggle-checkbox">
               <div class="s2-explore-toggle-bg">
                 <span class="s2-explore-toggle-text">EXPLORE</span>
-                <div class="s2-explore-toggle-handle"></div>
               </div>
+              <div class="s2-explore-toggle-handle"></div>
             </label>
           </div>
         </div>
@@ -9712,8 +9712,8 @@
               <input type="checkbox" class="s2-explore-toggle-checkbox">
               <div class="s2-explore-toggle-bg">
                 <span class="s2-explore-toggle-text">EXPLORE</span>
-                <div class="s2-explore-toggle-handle"></div>
               </div>
+              <div class="s2-explore-toggle-handle"></div>
             </label>
           </div>
         </div>
