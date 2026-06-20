@@ -245,7 +245,7 @@
       nav.header-nav.nav-open,
       nav.nav-open {
         z-index: 2000 !important;
-        position: sticky;
+        position: sticky !important;
       }
 
       .logo-img {
@@ -2515,9 +2515,11 @@
     // Mobile Navigation & Scroll Init
     const initNavbar = () => {
       const menuBtn = document.querySelector('.nav-menu-btn');
-      const nav = document.querySelector('.header-nav');
+      const nav = document.querySelector('nav') || document.querySelector('.header-nav');
+      console.log("Stakor subscription page nav menu init:", { menuBtn, nav });
       if (menuBtn && nav) {
         menuBtn.addEventListener('click', () => {
+          console.log("Stakor subscription page nav menu clicked");
           nav.classList.toggle('nav-open');
           const isOpen = nav.classList.contains('nav-open');
           if (isOpen) {
@@ -2786,7 +2788,6 @@
           }
         );
       }
-    });
   </script>
 
   <!-- Auth-state navbar toggle -->

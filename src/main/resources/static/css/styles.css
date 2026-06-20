@@ -3665,6 +3665,12 @@ body {
     color: var(--navy-text);
 }
 
+.analyzer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .analyzer-title {
     font-size: 20px;
     font-weight: 700;
@@ -3678,7 +3684,7 @@ body {
     color: #64748B;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: -12px;
+    margin-top: -8px;
     display: block;
 }
 

@@ -1359,6 +1359,9 @@
         }
 
         @media (max-width: 768px) {
+            .spline-sticky-viewport {
+                display: none !important;
+            }
             nav.header-nav, nav {
                 padding: 2px 20px !important;
                 border-radius: 0 !important;
@@ -1612,6 +1615,9 @@
             }
             .glass-reveal-card {
                 padding: 24px;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: #ffffff !important;
             }
             .card-header-title {
                 font-size: 26px;
@@ -1634,6 +1640,9 @@
             }
             .goal-filter-radio {
                 flex: 1 1 100%;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: #ffffff !important;
             }
             .reveal-bottle-actor {
                 height: 320px;
@@ -1642,6 +1651,9 @@
                 flex-direction: column;
                 align-items: stretch;
                 padding: 32px;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: #ffffff !important;
             }
             .card-visual-fig {
                 width: 100%;
@@ -2232,23 +2244,29 @@
             let splineApp = null;
             const splineViewerEl = document.querySelector('.spline-sticky-viewport spline-viewer');
 
-            if (splineViewerEl) {
-                const init3DReveal = () => {
-                    const app = splineViewerEl.application || splineViewerEl.spline;
-                    if (app && app.scene) {
-                        splineApp = app;
-                        initSplineScrollAnimations(splineApp);
-                        return true;
-                    }
-                    return false;
-                };
+            if (window.innerWidth > 768) {
+                if (splineViewerEl) {
+                    const init3DReveal = () => {
+                        const app = splineViewerEl.application || splineViewerEl.spline;
+                        if (app && app.scene) {
+                            splineApp = app;
+                            initSplineScrollAnimations(splineApp);
+                            return true;
+                        }
+                        return false;
+                    };
 
-                // Check if already loaded, otherwise listen for load-complete
-                if (!init3DReveal()) {
-                    splineViewerEl.addEventListener('load-complete', () => {
-                        init3DReveal();
-                    });
+                    if (!init3DReveal()) {
+                        splineViewerEl.addEventListener('load-complete', () => {
+                            init3DReveal();
+                        });
+                    }
                 }
+            } else {
+                // Remove all spline viewers entirely on mobile to save CPU/memory/GPU
+                document.querySelectorAll('spline-viewer').forEach(viewer => {
+                    viewer.remove();
+                });
             }
 
             function initSplineScrollAnimations(app) {
@@ -2264,7 +2282,7 @@
                         trigger: '.collections-container',
                         start: 'top top',
                         end: '#sec-grid top',
-                        scrub: true
+                        scrub: 0.8
                     }
                 });
 
@@ -2362,7 +2380,7 @@
                     trigger: '#sec-grid',
                     start: 'top 80%',
                     end: 'top 20%',
-                    scrub: true
+                    scrub: 0.8
                 }
             })
             .to('.floating-bottle-overlay', { opacity: 0, ease: 'none' });
@@ -2377,7 +2395,7 @@
                         trigger: section,
                         start: 'top 80%',
                         end: 'bottom 20%',
-                        scrub: true
+                        scrub: 0.8
                     }
                 });
 
@@ -2396,7 +2414,7 @@
                     trigger: '#sec-core',
                     start: 'top 60%',
                     end: 'bottom 40%',
-                    scrub: true
+                    scrub: 0.8
                 }
             });
             tlCore.fromTo('#bottle-actor-core', 
@@ -2412,7 +2430,7 @@
                     trigger: '#sec-protein',
                     start: 'top 60%',
                     end: 'bottom 40%',
-                    scrub: true
+                    scrub: 0.8
                 }
             });
             tlProtein.fromTo('#bottle-actor-protein', 
@@ -2428,7 +2446,7 @@
                     trigger: '#sec-satiety',
                     start: 'top 60%',
                     end: 'bottom 40%',
-                    scrub: true
+                    scrub: 0.8
                 }
             });
             tlSatiety.fromTo('#bottle-actor-satiety', 
@@ -2444,7 +2462,7 @@
                     trigger: '#sec-glucose',
                     start: 'top 60%',
                     end: 'bottom 40%',
-                    scrub: true
+                    scrub: 0.8
                 }
             });
             tlGlucose.fromTo('#bottle-actor-glucose', 
@@ -2460,7 +2478,7 @@
                     trigger: '#sec-balance',
                     start: 'top 60%',
                     end: 'bottom 40%',
-                    scrub: true
+                    scrub: 0.8
                 }
             });
             tlBalance.fromTo('#bottle-actor-balance', 
@@ -2476,7 +2494,7 @@
                     trigger: '#sec-completion',
                     start: 'top 80%',
                     end: 'bottom 20%',
-                    scrub: true
+                    scrub: 0.8
                 }
             });
             tlCompletion.to('#bottle-actor-core', { opacity: 1, scale: 0.6, xPercent: -150, yPercent: -120, left: '50%', top: '50%', duration: 0.5, ease: 'power1.out' })
@@ -2491,7 +2509,7 @@
                     trigger: '#sec-formation',
                     start: 'top 80%',
                     end: 'bottom 20%',
-                    scrub: true
+                    scrub: 0.8
                 }
             });
             tlFormation.to('#bottle-actor-core', { scale: 0.5, xPercent: -90, yPercent: -90, duration: 0.5, ease: 'power1.out' })
